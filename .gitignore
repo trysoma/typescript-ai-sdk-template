@@ -7,3 +7,4 @@ build.tar.zst
 dist
 node-compile-cache/
 .env
+.DS_Store
