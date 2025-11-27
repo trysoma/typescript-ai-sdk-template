@@ -10,8 +10,6 @@ import { type LanguageModel, streamText, tool, wrapLanguageModel } from "ai";
 import { z } from "zod";
 import { convertToAiSdkMessages } from "../utils";
 
-// import { bridge } from "./../.soma/bridge-client";
-/////
 
 const InsuranceClaimSchema = z.object({
 	date: z.string(),
@@ -21,16 +19,11 @@ const InsuranceClaimSchema = z.object({
 	email: z.string(),
 });
 
-// type InsuranceClaim = z.infer<typeof InsuranceClaimSchema>;
 export const assessmentSchema = z.object({
 	claim: InsuranceClaimSchema,
 });
 
 type Assessment = z.infer<typeof assessmentSchema>;
-
-// interface BaseHandlerInput {
-// 	model: LanguageModel;
-// }
 
 interface DiscoverClaimInput {
 	model: LanguageModel;
@@ -57,7 +50,6 @@ const handlers = {
 			const stream = streamText({
 				model,
 				messages,
-				//   abortSignal,
 				tools: {
 					decodeClaim: tool({
 						description: "Decode a claim into a structured object. ",
@@ -74,8 +66,6 @@ const handlers = {
 				if (evt.type === "text-delta") {
 					process.stdout.write(evt.text);
 					agentOutput += evt.text;
-					// messages.push({ role: "assistant", content: agentOutput });
-					// stream output back to user
 				}
 			}
 
@@ -102,7 +92,6 @@ const handlers = {
 			sendMessage,
 		}) => {
 			ctx.console.log("Assessment", assessment);
-			// const b = bridge();
 
 			await sendMessage({
 				metadata: {},
@@ -117,28 +106,11 @@ const handlers = {
 				role: MessageRole.Agent,
 			});
 
-			// await ctx.run(async () => await b.invokeDanieltrysomaaiGoogleMailSendEmail({
-			// 	googleMailgoogleMailSendEmailParamsWrapper: {
-			// 		params: {
-			// 			body: "Your claim has been processed. Please find the results attached.",
-			// 			subject: "Insurance Claim Processed",
-			// 			to: assessment.claim.email || ""
-			// 		}
-			// 	},
-			// }));
-
-			// await ctx.run(async () => await b.invokeInternalBotApproveClaim({
-			// 	approveClaimapproveClaimParamsWrapper: {
-			// 		params: {
-			// 			claim: assessment.claim,
-			// 		}
-			// 	},
-			// }));
 		},
 	),
 };
 export default createSomaAgent({
-	projectId: "danielblignaut",
+	projectId: "acme",
 	agentId: "insuranceClaimsAgent",
 	name: "Insurance Claims Agent",
 	description: "An agent that can process insurance claims.",

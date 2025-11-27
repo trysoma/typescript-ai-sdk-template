@@ -1,3 +1,6 @@
 restate-data
 standalone.ts
-local.db
+*.bin
+envelope_encryption_keys
+envelope-encryption-keys
+*.db
