@@ -1,5 +1,5 @@
 import type { ProviderController } from "@trysoma/sdk";
-import { createSomaFunction } from "@trysoma/sdk/bridge";
+import { createSomaFunction } from "@trysoma/sdk";
 import z from "zod";
 import { assessmentSchema } from "../agents";
 export const providerController: ProviderController = {
@@ -8,19 +8,6 @@ export const providerController: ProviderController = {
 	documentation: "Approve a claim",
 	categories: [],
 	credentialControllers: [
-		// {
-		//     type: "Oauth2AuthorizationCodeFlow",
-		//     field0: {
-		//         staticCredentialConfiguration: {
-		//             authUri: 'https://random-number.com/auth',
-		//             tokenUri: 'https://random-number.com/token',
-		//             userinfoUri: 'https://random-number.com/userinfo',
-		//             jwksUri: 'https://random-number.com/jwks',
-		//             issuer: 'https://random-number.com',
-		//             scopes: ['openid', 'profile', 'email'],
-		//         },
-		//     }
-		// }
 		{
 			type: "NoAuth",
 		},
@@ -39,7 +26,7 @@ export default createSomaFunction({
 	},
 	handler: async ({ claim }) => {
 		console.log("Claim", claim);
-		// perform an async action here to approve the claim
-		return { approved: true };
+		await new Promise(resolve => setTimeout(resolve, 1000));
+		return { approved: Math.random() > 0.5 };
 	},
 });

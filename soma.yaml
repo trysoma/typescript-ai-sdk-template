@@ -1,1 +1,34 @@
-version: 0.0.2
+encryption:
+  envelope_keys:
+    local.bin:
+      type: local
+      file_name: local.bin
+      deks:
+        default:
+          encrypted_key: rBho7lREXP3Tbw/gLMxUPfFMpQn/SyPyoztlE869M/tDfi+WfrF9VPNQYa0R4rkHSCXCMVMWPk5cj2pL
+bridge:
+  providers:
+    5ffab95c-59be-4f25-a044-31823ca981c0:
+      provider_controller_type_id: approve-claim
+      credential_controller_type_id: no_auth
+      display_name: test
+      resource_server_credential:
+        id: 264bc4e7-b266-493d-b0ae-0bedaaea287e
+        type_id: resource_server_no_auth
+        metadata: {}
+        value:
+          metadata: {}
+        dek_alias: default
+      user_credential:
+        id: ae79d202-a20b-47be-95bd-091b7588acb2
+        type_id: user_no_auth
+        metadata: {}
+        value:
+          metadata: {}
+        dek_alias: default
+      functions:
+      - approve-claim
+secrets:
+  OPENAI_API_KEY:
+    value: twHHrrypFZuRr4q0cl+1c6WnwnghPPt8jWF7HypiMUmjRQNIV4urVlSU/arQ+Kk9zafQlJIS+f0MhXr/0WBWmVxv0FLlJdVLp7bJQ9iyq+jpWru3GiVf+7xhOdEiJy1eJryiy6VFb9jC9qgb0U+CjbJ41SPT4lJlRxMQ7sBbnnZ3x5pEzU+bywc0guTj91p0C/eR5TVTYYP3aYZBNclvzmfZrmSbppWanMAbclAbMlXJCn3f1Yo0aRtR7quUuQ25RxyXfuBwmR79AT0ELTTY/dqArY7m7ALPLUrfD7nKfie2GUYTtcdJVvzDrMYOqkdPH3COISNwdat84AysQaCYTV6yEtT0Gi1YVDcJP7ATvSSZFfAygIYFtGDbmzjWrgQhroq0SrwNV7IN+5NZ3u3754cM1rPIdD3hncONhIgpxMfIlKW8mV70QzJJBcSxHlgx0FuXFloF968HAGV9FxIuk27CWDn74aAkI+bNEBNFqspREfVCROHs0lbuYJ0zWJPLJXRn/yS7n2jjNmlx2JV+l7N/d40tqIZV
+    dek_alias: default
