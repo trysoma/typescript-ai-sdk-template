@@ -11,15 +11,18 @@ importers:
       '@ai-sdk/openai':
         specifier: ^2.0.64
         version: 2.0.74(zod@4.1.13)
+      '@restatedev/restate-sdk':
+        specifier: ^1.9.1
+        version: 1.9.1
       '@restatedev/vercel-ai-middleware':
         specifier: ^0.2.0
         version: 0.2.0(@restatedev/restate-sdk@1.9.1)(ai@5.0.104(zod@4.1.13))(superjson@2.2.6)
       '@trysoma/api-client':
-        specifier: 0.0.2-snapshot-5
-        version: 0.0.2-snapshot-5
+        specifier: 0.0.4
+        version: 0.0.4
       '@trysoma/sdk':
-        specifier: 0.0.2-snapshot-5
-        version: 0.0.2-snapshot-5(@types/node@22.19.1)(express@4.21.2)(typescript@5.9.3)(vite@7.2.4(@types/node@22.19.1)(tsx@4.20.6)(yaml@2.8.1))
+        specifier: 0.0.4
+        version: 0.0.4(express@4.21.2)(typescript@5.9.3)(vite@7.2.4(@types/node@22.19.1)(tsx@4.20.6)(yaml@2.8.1))
       ai:
         specifier: ^5.0.89
         version: 5.0.104(zod@4.1.13)
@@ -513,39 +516,39 @@ packages:
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
 
-  '@trysoma/api-client@0.0.2-snapshot-5':
-    resolution: {integrity: sha512-ZydP2m4WgAudMnvKHIQTNnoMF83ppZ3VYjbG1qZp2IayRf6Fyf7bBgxE8pwSwHiqtNxI0EiZ85Ip5RGSu1lXJQ==}
+  '@trysoma/api-client@0.0.4':
+    resolution: {integrity: sha512-aSvOg7VzF8KqBv3iPnIgzrkfVl29k2ezmNo2daD4XhSPgLzJmb597K/Ss/raA2gLZ2LqW0hh6nTyhkLrCzm6fg==}
 
-  '@trysoma/sdk-core-darwin-arm64@0.0.2-snapshot-5':
-    resolution: {integrity: sha512-T3Fql7oR34AvSkhRQxMoYn7aREy/CErbE/m5YkxGEeqfE7x+WseZVFOeM+MnSp8VE8EK8hOJFgy+LQajRfsgRg==}
+  '@trysoma/sdk-core-darwin-arm64@0.0.4':
+    resolution: {integrity: sha512-Z0rp4PKVMTWbqsqH0xvgE+dFgctXjD8wE7pQhKeT5CVLQp7oW+BZ9zMYi8Qkjt620qUzb7wdE5FOUlJ2N0WWiQ==}
     engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
     cpu: [arm64]
     os: [darwin]
 
-  '@trysoma/sdk-core-darwin-x64@0.0.2-snapshot-5':
-    resolution: {integrity: sha512-ceCu/gmO48BUkytDhDX62Xd+XBS6DVupDF8B7+Ru5lkRCgBZBmwOHfkvepuwLKbFXBpglJaBqfCFL1tsE4G0uA==}
+  '@trysoma/sdk-core-darwin-x64@0.0.4':
+    resolution: {integrity: sha512-KaUM0WZ+q+Qb89K8s3grtDOwxGYGIxKXryrDGnMUjOnv+p6+kyE5EiGQC7cWY0QwrvnWCWQ7wGf7VZYxQJfV2A==}
     engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
     cpu: [x64]
     os: [darwin]
 
-  '@trysoma/sdk-core-linux-arm64-gnu@0.0.2-snapshot-5':
-    resolution: {integrity: sha512-sEtKU/opaE4KVa/hXJ1UiZAAUTVzhUdvnwOUa3GnTQ7CfXM643lde6oRxGBvRAE1LJejmnXswF1KOcgCeOM7Eg==}
+  '@trysoma/sdk-core-linux-arm64-gnu@0.0.4':
+    resolution: {integrity: sha512-GAEDDeiAyb5H2Rnun83FREjzYkOUyzqGQGpzs8fN6X0NPcgAyWTfEQCtCvDXErf29CUSwbTGsmlCPYDcU1diuQ==}
     engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
     cpu: [arm64]
     os: [linux]
 
-  '@trysoma/sdk-core-linux-x64-gnu@0.0.2-snapshot-5':
-    resolution: {integrity: sha512-ryrIX9+cbTAK9K8U3xij8to7JXLRfsPQ13rdEoC68N/UocRenzwpAtREEaz7Ug8hZ9IFjB2mKKJz6wp+i8sLow==}
+  '@trysoma/sdk-core-linux-x64-gnu@0.0.4':
+    resolution: {integrity: sha512-V4DgLZivr/3rcwRtdLz5EnPvIMtUK7rDOy+jyhshy3StqBSrcLDaDKsEor3RlxxiWbV2H1gaJFR/fqD3xeC9KA==}
     engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
     cpu: [x64]
     os: [linux]
 
-  '@trysoma/sdk-core@0.0.2-snapshot-5':
-    resolution: {integrity: sha512-OcbRODOs2LguuC83pkdOb+Sy61ZO2Tr684uw1Wy/ZfDb1zrG2c3jGaI7KxHliAi/uoMze+x/Hd7IsxRCyLVQig==}
+  '@trysoma/sdk-core@0.0.4':
+    resolution: {integrity: sha512-PbnFRmn46dPuLgsG5hFClFOZaP6GbNB2TOgiLOgCWGVMM82QUBl7Q3qmOUTvdEfkLEUqKaQWlyOcb29kvPPTtA==}
     engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
 
-  '@trysoma/sdk@0.0.2-snapshot-5':
-    resolution: {integrity: sha512-g+W24J37jvDVeDzmIch/bqr15QOytYPZl6lWEWBUOuy48aVX6CZSmuQjCYAP79Yvou8ssN9h6wJ5Zsvq/OBFZg==}
+  '@trysoma/sdk@0.0.4':
+    resolution: {integrity: sha512-gSFLg+cWvAM+5f5ofF8psARduS/MdKidJbCk0juz/mkgOtb+S4u8CDJ3oZGHOI6TgtlNQTt2j5cjkWPoh/ld3Q==}
     peerDependencies:
       typescript: ^5
       vite: ^5.0.0 || ^6.0.0 || ^7.0.0
@@ -1555,11 +1558,6 @@ packages:
     resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
     engines: {node: '>=12'}
 
-  zod-to-json-schema@3.25.0:
-    resolution: {integrity: sha512-HvWtU2UG41LALjajJrML6uQejQhNJx+JBO9IflpSja4R03iNWfKXrj6W2h7ljuLyc1nKS+9yDyL/9tD1U/yBnQ==}
-    peerDependencies:
-      zod: ^3.25 || ^4
-
   zod@4.1.13:
     resolution: {integrity: sha512-AvvthqfqrAhNH9dnfmrfKzX5upOdjUVJYFqNSlkmGf64gRaTzlPwz99IHYnVs28qYAybvAlBV+H7pn0saFY4Ig==}
 
@@ -1893,49 +1891,38 @@ snapshots:
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
-  '@trysoma/api-client@0.0.2-snapshot-5': {}
+  '@trysoma/api-client@0.0.4': {}
 
-  '@trysoma/sdk-core-darwin-arm64@0.0.2-snapshot-5':
+  '@trysoma/sdk-core-darwin-arm64@0.0.4':
     optional: true
 
-  '@trysoma/sdk-core-darwin-x64@0.0.2-snapshot-5':
+  '@trysoma/sdk-core-darwin-x64@0.0.4':
     optional: true
 
-  '@trysoma/sdk-core-linux-arm64-gnu@0.0.2-snapshot-5':
+  '@trysoma/sdk-core-linux-arm64-gnu@0.0.4':
     optional: true
 
-  '@trysoma/sdk-core-linux-x64-gnu@0.0.2-snapshot-5':
+  '@trysoma/sdk-core-linux-x64-gnu@0.0.4':
     optional: true
 
-  '@trysoma/sdk-core@0.0.2-snapshot-5':
+  '@trysoma/sdk-core@0.0.4':
     optionalDependencies:
-      '@trysoma/sdk-core-darwin-arm64': 0.0.2-snapshot-5
-      '@trysoma/sdk-core-darwin-x64': 0.0.2-snapshot-5
-      '@trysoma/sdk-core-linux-arm64-gnu': 0.0.2-snapshot-5
-      '@trysoma/sdk-core-linux-x64-gnu': 0.0.2-snapshot-5
+      '@trysoma/sdk-core-darwin-arm64': 0.0.4
+      '@trysoma/sdk-core-darwin-x64': 0.0.4
+      '@trysoma/sdk-core-linux-arm64-gnu': 0.0.4
+      '@trysoma/sdk-core-linux-x64-gnu': 0.0.4
 
-  '@trysoma/sdk@0.0.2-snapshot-5(@types/node@22.19.1)(express@4.21.2)(typescript@5.9.3)(vite@7.2.4(@types/node@22.19.1)(tsx@4.20.6)(yaml@2.8.1))':
+  '@trysoma/sdk@0.0.4(express@4.21.2)(typescript@5.9.3)(vite@7.2.4(@types/node@22.19.1)(tsx@4.20.6)(yaml@2.8.1))':
     dependencies:
       '@a2a-js/sdk': 0.3.5(express@4.21.2)
-      '@openapitools/openapi-generator-cli': 2.25.2(@types/node@22.19.1)
       '@restatedev/restate-sdk': 1.9.1
-      '@trysoma/api-client': 0.0.2-snapshot-5
-      '@trysoma/sdk-core': 0.0.2-snapshot-5
+      '@trysoma/api-client': 0.0.4
+      '@trysoma/sdk-core': 0.0.4
       typescript: 5.9.3
       vite: 7.2.4(@types/node@22.19.1)(tsx@4.20.6)(yaml@2.8.1)
       zod: 4.1.13
-      zod-to-json-schema: 3.25.0(zod@4.1.13)
     transitivePeerDependencies:
-      - '@nestjs/microservices'
-      - '@nestjs/platform-express'
-      - '@nestjs/websockets'
-      - '@types/node'
-      - class-transformer
-      - class-validator
-      - debug
-      - encoding
       - express
-      - supports-color
 
   '@types/chai@5.2.3':
     dependencies:
@@ -3031,9 +3018,5 @@ snapshots:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 21.1.1
-
-  zod-to-json-schema@3.25.0(zod@4.1.13):
-    dependencies:
-      zod: 4.1.13
 
   zod@4.1.13: {}
