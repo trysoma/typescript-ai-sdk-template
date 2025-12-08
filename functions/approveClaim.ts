@@ -1,5 +1,5 @@
 import type { ProviderController } from "@trysoma/sdk";
-import { createSomaFunction } from "@trysoma/sdk";
+import { createSomaFunction } from "@trysoma/sdk/bridge";
 import z from "zod";
 import { assessmentSchema } from "../agents";
 export const providerController: ProviderController = {
@@ -24,9 +24,8 @@ export default createSomaFunction({
 		name: "approve-claim",
 		description: "Approve a claim",
 	},
-	handler: async ({ claim }) => {
-		console.log("Claim", claim);
-		await new Promise(resolve => setTimeout(resolve, 1000));
-		return { approved: Math.random() > 0.5 };
+	handler: async ({ claim: _claim }) => {
+		// perform an async action here to approve the claim
+		return { approved: true };
 	},
 });
