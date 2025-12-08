@@ -1,4 +1,4 @@
-# Insurance Claim Bot Example
+# Typescript AI SDK Template
 
 This is an example agent built with the Soma TypeScript SDK that processes insurance claims.
 
