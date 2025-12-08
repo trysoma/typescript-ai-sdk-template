@@ -1,109 +1,63 @@
 # Typescript AI SDK Template
 
-This is a github template for Soma's JS SDK. This template is an example of how to use Vercel's ```AI SDK``` to create an agent that runs on Soma.
+This is an example agent built with the Soma TypeScript SDK that processes insurance claims.
 
-In a terminal, run ```soma dev --clean``` in the project root. ```--clean``` ensures that we will start with a clean database and Restate server.
+Read our [documentation](https://docs.trysoma.ai) to dive deeper into Soma
 
-## secret configuration
-
-In another terminal:
+## Project Structure
 
 ```
+insurance-claim-bot/
+├── agents/
+│   └── index.ts          # Main agent definition
+├── functions/
+│   └── approveClaim.ts   # Function to approve claims
+├── soma/
+│   ├── standalone.ts     # Auto-generated server entry point
+│   └── bridge.ts         # Auto-generated bridge client
+├── utils.ts              # Utility functions
+├── package.json          # Project configuration
+└── README.md             # This file
+```
+
+## Getting Started
+
+1. Install dependencies:
+
+```bash
+pnpm install
+```
+
+2. Start the development server:
+
+```bash
+# Generate and watch for changes
+soma dev --clean
+```
+
+3. In a seperate terminal, configure OPENAI_API_KEY
+
+```bash
 soma enc-key add local --file-name local.bin
-soma secret set OPENAI_API_KEY xyz
+soma secret set OPENAI_API_KEY xxxx
 ```
 
-## MCP configuration
+4. Enable the approveClaim function: navigate to `http://localhost:3000` > Bridge > Enable functions
+5. start a chat: navigate to `http://localhost:3000` > A2A > Chat
 
-1. Open your browser, naviate to ```http://localhost:3000/bridge/enable-functions```
-2. enable the approve claim provider (click the row, click configure, set an account display name). This is a custom MCP function in our ```./functions/approveClaim.ts``` file.
-3. Your Bridge client will not have re-generated
+## How It Works
 
-You can invoke the ```approve-claim``` function in 2 different ways:
+### Agent
 
-### Provide LLM with the MCP server
+The agent in `agents/index.ts` handles insurance claim processing using two patterns:
 
-This is how most MCP tools are provided to agents. In the case of Vercel's AI SDK, do the following:
+1. **Discover Claim**: Uses the `chat` pattern to converse with the user and extract claim details (date, category, reason, amount, email)
+2. **Process Claim**: Uses the `workflow` pattern to process the extracted claim
 
-```typescript
-import { experimental_createMCPClient as createMCPClient } from '@ai-sdk/mcp';
+The agent uses the Vercel AI SDK with OpenAI's GPT-4o model and includes Restate's durable execution middleware for reliability.
 
-const mcpClient = await createMCPClient({
-  transport: {
-    type: 'http',
-    url: 'http://localhost:3000/mcp',
-  },
-});
+### Function
 
-const tools = mcpClient.tools();
+The function in `functions/approveClaim.ts` is a simple function that approves claims.
+In a real application, this would integrate with your claims processing system.
 
-const stream = streamText({
-    model,
-    messages,
-    tools
-});
-```
-
-### Direct invocation
-
-Instantiate the generated bridge client. The client types are re-generated everytime you enable or disable a Bridge function.
-
-```./agents/index.ts```
-
-Ensure it's imported at the top of the file from the generated location.
-
-Do not gitignore the ```.soma/bridge.ts``` file.
-
-```diff
-+import { type BridgeDefinition, getBridge } from "../.soma/bridge";
-```
-
-Pass in the bridge client type to your pattern definitions
-```diff
-patterns.chat<
-		BridgeDefinition,
-		DiscoverClaimInput,
-		Assessment
-	>
-```
-
-Instantiate the client in your entrypoint function.
-
-```diff
-entrypoint: async ({ ctx, soma, taskId, contextId: _contextId }) => {
-+		const bridge = getBridge(ctx);
-```
-
-Invoke it in the entrypoint or in any of your pattern functions (it's passdown as a parameter in the pattern functins).
-
-```typescript
-bridge.approveClaim.test.approveClaim({
-    claim: assessment.claim,
-});
-```
-
-or enable any SaaS integration from ```http://localhost:3000/bridge/enable-functions``` and use it in the same way.
-
-```typescript
-bridge.googleMail["test@ame.com"].sendEmail({
-    to: "receiver@acme.com",
-    subject: "Test!"
-    body: "Testing!!"
-});
-```
-
-These clients are strongly typed out of the box.
-
-## Debugging
-
-### Agent chat & invocations
-
-Navigate to ```http://localhost:3000/a2a```
-
-From here you can find endpoint information for your agents. From the ```Chat``` panel you can test invocations of your agent via chat.
-
-### MCP functions
-
-Navigate to ```http://localhost:3000/bridge/mcp-inspector```
-
-From here you can interact with the MCP server exactly how any LLM would. Alternatively, under the ```Enable functions``` page, you can open any enabled function and there is an explicit test tab with the input schema rendered as a form for you to test directly.

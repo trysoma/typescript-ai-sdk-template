@@ -8,9 +8,8 @@ import {
 import { createSomaAgent, patterns } from "@trysoma/sdk";
 import { type LanguageModel, streamText, tool, wrapLanguageModel } from "ai";
 import { z } from "zod";
+import { type BridgeDefinition, getBridge } from "../soma/bridge";
 import { convertToAiSdkMessages } from "../utils";
-import { getBridge, type BridgeDefinition } from "../.soma/bridge";
-
 
 const InsuranceClaimSchema = z.object({
 	date: z.string(),
@@ -35,7 +34,11 @@ interface ProcessClaimInput {
 }
 
 const handlers = {
-	discoverClaim: patterns.chat<BridgeDefinition, DiscoverClaimInput, Assessment>(
+	discoverClaim: patterns.chat<
+		BridgeDefinition,
+		DiscoverClaimInput,
+		Assessment
+	>(
 		async ({
 			ctx,
 			soma: _soma,
@@ -43,6 +46,7 @@ const handlers = {
 			input: { model },
 			onGoalAchieved,
 			sendMessage,
+			bridge: _bridge,
 		}) => {
 			const messages = convertToAiSdkMessages(history);
 
@@ -51,6 +55,7 @@ const handlers = {
 			const stream = streamText({
 				model,
 				messages,
+				//   abortSignal,
 				tools: {
 					decodeClaim: tool({
 						description: "Decode a claim into a structured object. ",
@@ -67,6 +72,8 @@ const handlers = {
 				if (evt.type === "text-delta") {
 					process.stdout.write(evt.text);
 					agentOutput += evt.text;
+					// messages.push({ role: "assistant", content: agentOutput });
+					// stream output back to user
 				}
 			}
 
@@ -107,7 +114,6 @@ const handlers = {
 				referenceTaskIds: [],
 				role: MessageRole.Agent,
 			});
-
 		},
 	),
 };
@@ -118,6 +124,7 @@ export default createSomaAgent({
 	description: "An agent that can process insurance claims.",
 	entrypoint: async ({ ctx, soma, taskId, contextId: _contextId }) => {
 		const bridge = getBridge(ctx);
+
 		const model = wrapLanguageModel({
 			model: openai("gpt-4o"),
 			middleware: durableCalls(ctx, { maxRetryAttempts: 3 }),
@@ -126,20 +133,20 @@ export default createSomaAgent({
 		ctx.console.log("Discovering claim...");
 		const assessment = await handlers.discoverClaim({
 			ctx,
+			bridge,
 			input: { model },
 			taskId,
 			soma,
 			firstTurn: "agent",
-			bridge
 		});
 
 		await handlers.processClaim({
 			ctx,
+			bridge,
 			input: { assessment },
 			taskId,
 			soma,
 			interruptable: false,
-			bridge,
 		});
 
 		await ctx.run(() =>

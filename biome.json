@@ -7,7 +7,16 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"includes": ["**", "!dist", "!node_modules", "!coverage", "!target", "!tmp", "!.soma", "!root"]
+		"includes": [
+			"**",
+			"!dist",
+			"!node_modules",
+			"!coverage",
+			"!target",
+			"!tmp",
+			"!.soma",
+			"!root"
+		]
 	},
 	"formatter": {
 		"enabled": true,
